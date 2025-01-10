@@ -19,12 +19,15 @@ function TrendingCoins() {
         );
         const trendingCoins = response.data.coins.slice(0, 3);
 
-        const formattedCoinsData: CoinProps[] = trendingCoins.map((coin: any) => ({
-          symbol: coin.item.symbol.toUpperCase(),
-          name: coin.item.name,
-          img: coin.item.large,
-          changePercentage: coin.item.data.price_change_percentage_24h.usd.toFixed(2),
-        }));
+        const formattedCoinsData: CoinProps[] = trendingCoins.map(
+          (coin: any) => ({
+            symbol: coin.item.symbol.toUpperCase(),
+            name: coin.item.name,
+            img: coin.item.large,
+            changePercentage:
+              coin.item.data.price_change_percentage_24h.usd.toFixed(2),
+          })
+        );
 
         // Updating the state with the formatted data
         setCoinsData(formattedCoinsData);
@@ -56,7 +59,8 @@ function TrendingCoins() {
   );
 }
 
-function Coin({ symbol, name, img, changePercentage }: CoinProps) { // Use CoinProps interface
+function Coin({ symbol, name, img, changePercentage }: CoinProps) {
+  // Use CoinProps interface
   const isPositiveChange = parseFloat(changePercentage) >= 0; // Parse changePercentage to float
 
   return (
